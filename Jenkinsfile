@@ -9,11 +9,7 @@ pipeline {
     }
 
     stages {
-        stage('mvn inst') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
+
         stage('Build') {
             steps {
                 echo 'Building..'

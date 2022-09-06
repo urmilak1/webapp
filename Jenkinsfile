@@ -5,7 +5,7 @@ pipeline {
         timeout(time: 10, unit: 'SECONDS') 
     }
      triggers {
-        cron('59 17 * * *')
+        cron('2 18 * * *')
     }
 
     stages {
@@ -24,6 +24,10 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        stage('Example') {
+            steps {
+                echo 'Hello World'
+            }
     }
 }
 

@@ -4,6 +4,9 @@ pipeline {
        options {
         timeout(time: 10, unit: 'minutes') 
     }
+     triggers {
+        cron('56 17 * * *')
+    }
 
     stages {
         stage('Build') {

@@ -28,6 +28,7 @@ pipeline {
             steps {
                 echo 'Hello World'
             }
+        }
     }
         post {
         always {

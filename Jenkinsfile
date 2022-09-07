@@ -31,12 +31,20 @@ pipeline {
             }
         }
     }
-        stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarScanner 4.7.0.2747';
-    withSonarQubeEnv('sonarqube-8.9.9.56886') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-  }
+        stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonarqube-8.9.9.56886') {
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
+          stage("Quality Gate") {
+            steps {
+                             
+                waitForQualityGate abortPipeline: true
+               }
+          }
         post {
         always {
             emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'

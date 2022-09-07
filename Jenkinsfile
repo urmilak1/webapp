@@ -2,7 +2,7 @@ pipeline {
     agent any
     
        options {
-        timeout(time: 50, unit: 'SECONDS') 
+        timeout(time: 50, unit: 'MINUTES') 
     }
      triggers {
         cron('25 18 * * *')

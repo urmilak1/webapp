@@ -16,8 +16,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-- task: DotNetCoreCLI@2
-  inputs:
+
     command: 'build'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
@@ -26,3 +25,5 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+- task: DotNetCoreCLI@2
+  inputs:
